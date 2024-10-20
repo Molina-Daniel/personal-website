@@ -66,7 +66,9 @@ const Intro = () => {
         <span className="font-bold">full-stack developer</span> with
         <span className="font-bold"> 5 years</span> of experience. I enjoy
         building <span className="italic">sites & apps</span>. My focus is{" "}
-        <span className="underline">React (Next.js)</span>.
+        <span className="underline">TypeScript</span>,{" "}
+        <span className="underline">React</span> and{" "}
+        <span className="underline">AI</span>.
       </motion.h2>
 
       <motion.div
