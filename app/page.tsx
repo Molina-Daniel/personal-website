@@ -1,4 +1,5 @@
 import About from "@/components/About";
+import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
 import Intro from "@/components/Intro";
 import SectionDivider from "@/components/SectionDivider";
@@ -12,6 +13,7 @@ export default function Home() {
       <About />
       <Skills />
       <Experience />
+      <Contact />
     </main>
   );
 }
