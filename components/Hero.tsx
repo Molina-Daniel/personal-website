@@ -1,18 +1,30 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { BsArrowRight, BsGithub, BsLinkedin } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
+import { useActiveSectionContext } from "@/context/ActiveSectionContext";
 
-const Intro = () => {
+const Hero = () => {
+  const { ref, inView } = useInView({
+    threshold: 0.85,
+  });
+  const { setActiveSection } = useActiveSectionContext();
+
+  useEffect(() => {
+    if (inView) setActiveSection("Hero");
+  }, [inView, setActiveSection]);
+
   return (
     <section
-      id="home"
-      className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]"
+      ref={ref}
+      id="hero"
+      className="mb-28 max-w-[50rem] text-center sm:mb-28 scroll-mt-[100rem]"
     >
       <div className="flex items-center justify-center">
         <div className="relative">
@@ -116,4 +128,4 @@ const Intro = () => {
   );
 };
 
-export default Intro;
+export default Hero;

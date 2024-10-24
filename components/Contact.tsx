@@ -1,12 +1,26 @@
 "use client";
 
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import { FaPaperPlane } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useActiveSectionContext } from "@/context/ActiveSectionContext";
 import SectionHeading from "./SectionHeading";
 
 const Contact = () => {
+  const { ref, inView } = useInView({
+    threshold: 0.75,
+  });
+  const { setActiveSection } = useActiveSectionContext();
+
+  useEffect(() => {
+    if (inView) setActiveSection("Contact");
+  }, [inView, setActiveSection]);
+
   return (
     <motion.section
+      ref={ref}
+      id="contact"
       className="mb-20 sm:28 w-[min(100%,38rem)] text-center"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}

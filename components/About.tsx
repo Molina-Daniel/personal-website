@@ -1,13 +1,27 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useActiveSectionContext } from "@/context/ActiveSectionContext";
 import SectionHeading from "./SectionHeading";
 
 const About = () => {
+  const { ref, inView } = useInView({
+    threshold: 1,
+  });
+  const { setActiveSection } = useActiveSectionContext();
+
+  useEffect(() => {
+    if (inView) setActiveSection("About");
+  }, [inView, setActiveSection]);
+
   return (
     <motion.section
-      className="mb-28 max-w-[46rem] text-center leading-8 sm:mb-40 scroll-mt-28"
+      ref={ref}
+      id="about"
+      className="pb-28 max-w-[46rem] text-center leading-8 sm:pb-80 sm:pt-28 scroll-mt-28"
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.175 }}

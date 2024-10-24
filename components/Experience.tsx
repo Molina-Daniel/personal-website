@@ -1,28 +1,38 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { experiences } from "@/lib/data";
+import { useActiveSectionContext } from "@/context/ActiveSectionContext";
 import SectionHeading from "./SectionHeading";
-import { useInView } from "react-intersection-observer";
 
 const Experience = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    threshold: 0.7,
   });
+  const { setActiveSection } = useActiveSectionContext();
+
+  useEffect(() => {
+    if (inView) setActiveSection("Experience");
+  }, [inView, setActiveSection]);
 
   return (
-    <section ref={ref} className="mb-28 sm:mb-40 scroll-mt-28">
+    <section
+      id="experience"
+      ref={ref}
+      className="mb-28 sm:mb-40 sm:-mt-44 scroll-mt-28"
+    >
       <SectionHeading>My experience</SectionHeading>
       <VerticalTimeline lineColor="#e5e7eb">
         {experiences.map((item, index) => (
           <Fragment key={index}>
             <VerticalTimelineElement
-              visible={inView}
+              visible={true}
               contentStyle={{
                 background: "#f3f4f6",
                 boxShadow: "none",

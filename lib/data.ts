@@ -5,8 +5,8 @@ import { LuGraduationCap } from "react-icons/lu";
 
 export const sections = [
   {
-    name: "Home",
-    hash: "#home",
+    name: "Hero",
+    hash: "#hero",
   },
   {
     name: "About",
