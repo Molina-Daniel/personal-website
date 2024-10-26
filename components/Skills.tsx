@@ -25,11 +25,12 @@ const Skills = () => {
   const { ref, inView } = useInView({
     threshold: 1,
   });
-  const { setActiveSection } = useActiveSectionContext();
+  const { setActiveSection, timeOfLastClick } = useActiveSectionContext();
 
   useEffect(() => {
-    if (inView) setActiveSection("Skills");
-  }, [inView, setActiveSection]);
+    if (inView && Date.now() - timeOfLastClick > 1000)
+      setActiveSection("Skills");
+  }, [inView, setActiveSection, timeOfLastClick]);
 
   return (
     <section
