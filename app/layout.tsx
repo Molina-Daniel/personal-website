@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Toaster } from "react-hot-toast";
 import ActiveSectionContextProvider from "@/context/ActiveSectionContext";
 import Header from "@/components/Header";
 import "./globals.css";
@@ -37,6 +38,7 @@ export default function RootLayout({
         <ActiveSectionContextProvider>
           <Header />
           {children}
+          <Toaster position="bottom-right" />
         </ActiveSectionContextProvider>
       </body>
     </html>
